@@ -13,11 +13,18 @@ export default function Home()  {
 
   return (
     <View className="flex h-screen bg-background">
-      <Text className="text-foreground">Test UwU</Text>
-
+      <View className="absolute h-36 w-screen bg-primary">
+        <Text> UwU </Text>
+      </View>
       <View
         className={clsx(
-          'z-9999 w-1/6 absolute left-0 top-0 flex h-screen flex-col overflow-y-hidden bg-primary duration-300 ease-linear lg:translate-x-0',
+          'absolute h-screen w-screen bg-gray-950 lg:opacity-[0]',
+          sidebarOpen ? 'opacity-[0.75]' : 'opacity-[0]'
+        )}
+      />
+      <View
+        className={clsx(
+          'z-9999 absolute left-0 top-0 flex h-screen w-[175px] flex-col overflow-y-hidden bg-primary duration-300 ease-linear lg:translate-x-0',
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         )}>
         <View className="lg:py-6.5 py-5.5 flex items-center justify-between gap-2 px-6">
@@ -31,11 +38,11 @@ export default function Home()  {
           </View>
         </View>
       </View>
+
       <Pressable
         onPress={() => updateSidebarOpen(!sidebarOpen)}
-        className="size-[100px] rounded-full border-[5px] border-accent-foreground bg-accent translate-x-7 transition-colors duration-300 active:bg-accent-foreground">
-
-      </Pressable>
+        className="absolute size-[100px] translate-x-7 translate-y-5 rounded-full border-[5px] border-accent-foreground bg-accent transition-colors duration-300 active:bg-accent-foreground"
+      />
     </View>
   );};
 
