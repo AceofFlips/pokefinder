@@ -1,4 +1,4 @@
-import { Pressable, View, Text } from 'react-native';
+import { Pressable, View, Text, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import clsx from 'clsx';
@@ -16,8 +16,10 @@ const UI = () => {
       <View className="fixed h-36 w-screen justify-center bg-primary">
         <Pressable
           onPress={() => navigation.navigate('Home')}
-          className="relative left-[60px] place-self-center">
-          <Text className="bg-primary text-5xl font-bold text-yellow-300">PokeFinder</Text>
+          className="relative left-[60px] place-self-center lg:left-[125px]">
+          <Text className="bg-primary text-5xl font-bold text-yellow-300">
+            PokeFinder
+          </Text>
         </Pressable>
       </View>
       <View
@@ -26,25 +28,46 @@ const UI = () => {
           sidebarOpen ? 'block' : 'hidden'
         )}
       />
-      <View
+      <ScrollView
         className={clsx(
-          'z-9999 fixed left-0 top-0 flex h-screen w-[225px] flex-col overflow-y-hidden bg-primary duration-300 ease-linear lg:translate-x-0',
+          'z-9999 fixed left-0 top-0 flex h-screen w-[225px] flex-col  bg-primary duration-300 ease-linear lg:translate-x-0',
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         )}>
-        <View className="lg:py-6.5 py-5.5 flex items-center justify-between gap-2 px-6">
-          <Pressable>
-            <Text className="text-background">Go To Home</Text>
+        <View className="relative top-36 flex  border-b-2 border-t-2 border-background px-6">
+          <Pressable onPress={() => navigation.navigate('Home')} className="pt-[8%]">
+            <Text className="text-xl font-semibold text-white">Profiles</Text>
           </Pressable>
-        </View>
-        <View className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
-          <View className="mt-5 px-4 py-4 lg:mt-9 lg:px-6">
-            <Text className="text-background">Filler Text Here</Text>
+          <View className="items-center py-[4%]">
+            <Pressable onPress={() => navigation.navigate('Home')} className="py-[4%]">
+              <Text className="text-lg text-white">View</Text>
+            </Pressable>
+            <Pressable onPress={() => navigation.navigate('Home')} className="py-[4%]">
+              <Text className="text-lg text-white">Create</Text>
+            </Pressable>
           </View>
         </View>
-      </View>
+        <View className="relative top-36 flex  border-b-2 border-t-2 border-background px-6">
+          <Pressable onPress={() => navigation.navigate('Home')} className="pt-[8%]">
+            <Text className="text-xl font-semibold text-white">Dexes</Text>
+          </Pressable>
+          <View className="items-center py-[4%]">
+            <Pressable onPress={() => navigation.navigate('Home')} className="py-[4%]">
+              <Text className="text-lg text-white">National</Text>
+            </Pressable>
+            <Pressable onPress={() => navigation.navigate('Home')} className="py-[4%]">
+              <Text className="text-lg text-white">Regions</Text>
+            </Pressable>
+          </View>
+        </View>
+        <Pressable
+          onPress={() => navigation.navigate('Search')}
+          className="relative top-36 px-6 pt-[8%]">
+          <Text className="text-xl font-semibold text-white">Search</Text>
+        </Pressable>
+      </ScrollView>
       <Pressable
         onPress={() => updateSidebarOpen(!sidebarOpen)}
-        className="fixed size-[100px] translate-x-14 translate-y-5 rounded-full border-[5px] border-accent-foreground bg-accent transition-colors duration-300 active:bg-accent-foreground"
+        className="fixed size-[100px] android:size-[80px] translate-x-14 translate-y-5 rounded-full border-[5px] border-accent-foreground bg-accent transition-colors duration-300 active:bg-accent-foreground"
       />
     </>
   );
